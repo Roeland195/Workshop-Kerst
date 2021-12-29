@@ -9,5 +9,4 @@ public class ChristmasSweatherApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ChristmasSweatherApplication.class, args);
 	}
-
 }

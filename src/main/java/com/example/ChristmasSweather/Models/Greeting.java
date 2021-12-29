@@ -1,4 +1,4 @@
-package com.example.ChristmasSweather;
+package com.example.ChristmasSweather.Models;
 
 public class Greeting {
     private final long id;
