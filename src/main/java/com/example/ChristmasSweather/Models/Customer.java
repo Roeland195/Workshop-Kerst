@@ -1,7 +1,5 @@
 package com.example.ChristmasSweather.Models;
 
-import org.apache.juli.logging.Log;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -22,8 +20,8 @@ public class Customer {
     @OneToOne(targetEntity = Login.class)
     private Login login;
 
-    @OneToOne(targetEntity = ShoppingCart.class)
-    private ShoppingCart shoppingCart;
+    @OneToOne(targetEntity = Shoppingcart.class)
+    private Shoppingcart shoppingCart;
 
     @ManyToMany(targetEntity = Address.class)
     private Set<Address> addresses = new HashSet<>();
@@ -74,11 +72,11 @@ public class Customer {
         this.login = login;
     }
 
-    public ShoppingCart getShoppingCart() {
+    public Shoppingcart getShoppingCart() {
         return shoppingCart;
     }
 
-    public void setShoppingCart(ShoppingCart shoppingCart) {
+    public void setShoppingCart(Shoppingcart shoppingCart) {
         this.shoppingCart = shoppingCart;
     }
 }

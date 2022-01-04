@@ -1,10 +1,12 @@
 package com.example.ChristmasSweather.Models;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
 
 @Entity
-public class Order {
+public class delivery {
     @Id
     @Column(name = "id")
     private String id;
@@ -12,21 +14,23 @@ public class Order {
     @Column(name = "TotalAmount")
     private int totalAmount;
 
-    @OneToOne(targetEntity = OrderStatus.class)
-    private OrderStatus orderStatus;
+    @OneToOne(targetEntity = Orderstatus.class)
+    private Orderstatus orderStatus;
 
-    @ManyToMany(targetEntity = Product.class)
-    private Set<Product> producten = new HashSet<Product>();
+    @ManyToMany(targetEntity = Article.class)
+    private Set<Article> articles = new HashSet<>();
 
-    protected Order(){}
+    protected delivery(){}
 
-    public Order(int totalAmount, String id){
+    public delivery(int totalAmount, String id){
         this.totalAmount = totalAmount;
+        this.articles = articles;
         this.id = id;
     }
 
-    public Order(int totalAmount){
+    public delivery(int totalAmount){
         this.totalAmount = totalAmount;
+        this.articles = articles;
         this.id = UUID.randomUUID().toString();
     }
 
@@ -46,19 +50,19 @@ public class Order {
         this.totalAmount = totalAmount;
     }
 
-    public OrderStatus getOrderStatus() {
+    public Orderstatus getOrderStatus() {
         return orderStatus;
     }
 
-    public void setOrderStatus(OrderStatus orderStatus) {
+    public void setOrderStatus(Orderstatus orderStatus) {
         this.orderStatus = orderStatus;
     }
 
-    public Set<Product> getProducten() {
-        return producten;
+    public Set<Article> getProducts() {
+        return articles;
     }
 
-    public void setProducten(Set<Product> producten) {
-        this.producten = producten;
+    public void setProducts(Set<Article> articles) {
+        this.articles = articles;
     }
 }

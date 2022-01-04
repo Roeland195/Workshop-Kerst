@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import java.util.UUID;
 
 @Entity
-public class OrderStatus {
+public class Orderstatus {
     @Id
     @Column(name = "id")
     private String id;
@@ -14,14 +14,14 @@ public class OrderStatus {
     @Column(name = "status")
     private String status;
 
-    protected OrderStatus(){}
+    protected Orderstatus(){}
 
-    public OrderStatus(String id, String status) {
+    public Orderstatus(String id, String status) {
         this.id = id;
         this.status = status;
     }
 
-    public OrderStatus(String status) {
+    public Orderstatus(String status) {
         this.status = status;
         this.id = UUID.randomUUID().toString();
     }
