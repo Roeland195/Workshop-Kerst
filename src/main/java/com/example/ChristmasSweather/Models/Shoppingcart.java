@@ -11,17 +11,17 @@ public class Shoppingcart {
     @Column(name = "id")
     private String id;
 
-    @ManyToMany(targetEntity = Article.class)
-    private Set<Article> articles = new HashSet<>();
+    @ManyToMany(targetEntity = Product.class)
+    private Set<Product> articles = new HashSet<>();
 
     protected Shoppingcart(){}
 
-    public Shoppingcart(String id, Set<Article> articles) {
+    public Shoppingcart(String id, Set<Product> articles) {
         this.id = id;
         this.articles = articles;
     }
 
-    public Shoppingcart(Set<Article> articles) {
+    public Shoppingcart(Set<Product> articles) {
         this.articles = articles;
         this.id = UUID.randomUUID().toString();
     }
@@ -34,11 +34,11 @@ public class Shoppingcart {
         this.id = id;
     }
 
-    public Set<Article> getProducts() {
+    public Set<Product> getProducts() {
         return articles;
     }
 
-    public void setProducts(Set<Article> articles) {
+    public void setProducts(Set<Product> articles) {
         this.articles = articles;
     }
 }

@@ -17,8 +17,8 @@ public class delivery {
     @OneToOne(targetEntity = Orderstatus.class)
     private Orderstatus orderStatus;
 
-    @ManyToMany(targetEntity = Article.class)
-    private Set<Article> articles = new HashSet<>();
+    @ManyToMany(targetEntity = Product.class)
+    private Set<Product> articles = new HashSet<>();
 
     protected delivery(){}
 
@@ -58,11 +58,11 @@ public class delivery {
         this.orderStatus = orderStatus;
     }
 
-    public Set<Article> getProducts() {
+    public Set<Product> getProducts() {
         return articles;
     }
 
-    public void setProducts(Set<Article> articles) {
+    public void setProducts(Set<Product> articles) {
         this.articles = articles;
     }
 }

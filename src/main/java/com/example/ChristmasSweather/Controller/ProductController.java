@@ -2,6 +2,7 @@ package com.example.ChristmasSweather.Controller;
 
 import com.example.ChristmasSweather.Models.Customer;
 import com.example.ChristmasSweather.Models.Product;
+import com.example.ChristmasSweather.Models.Shoppingcart;
 import com.example.ChristmasSweather.Models.Theme;
 import com.example.ChristmasSweather.Reposetory.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
