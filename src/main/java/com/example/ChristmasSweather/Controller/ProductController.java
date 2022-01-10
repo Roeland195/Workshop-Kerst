@@ -6,9 +6,11 @@ import com.example.ChristmasSweather.Models.Shoppingcart;
 import com.example.ChristmasSweather.Models.Theme;
 import com.example.ChristmasSweather.Reposetory.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 @RestController
