@@ -41,12 +41,9 @@ public class Product {
     @Column(name = "total")
     private int total;
 
-    @ManyToMany(targetEntity = Theme.class)
-    private Set<Theme> themes = new HashSet<>();
-
     protected Product(){}
 
-    public Product(String id, int total, String name, String description, double price, String color, boolean avalable, String image, String sex, String size, Set<Theme> themes) {
+    public Product(String id,String name, int total, String description, double price, String color, boolean avalable, String image, String sex, String size) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -57,10 +54,9 @@ public class Product {
         this.image = image;
         this.sex = sex;
         this.size = size;
-        this.themes = themes;
     }
 
-    public Product(String name,int total , String description, double price, String color, boolean avalable, String image, String sex, String size, Set<Theme> themes) {
+    public Product(String name, int total , String description, double price, String color, boolean avalable, String image, String sex, String size) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.description = description;
@@ -71,7 +67,6 @@ public class Product {
         this.image = image;
         this.sex = sex;
         this.size = size;
-        this.themes = themes;
     }
 
     public String getId() {
@@ -152,13 +147,5 @@ public class Product {
 
     public void setTotal(int total) {
         this.total = total;
-    }
-
-    public Set<Theme> getThemes() {
-        return themes;
-    }
-
-    public void setThemes(Set<Theme> themes) {
-        this.themes = themes;
     }
 }
