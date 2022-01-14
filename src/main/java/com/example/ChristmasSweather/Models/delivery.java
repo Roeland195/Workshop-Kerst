@@ -14,9 +14,6 @@ public class delivery {
     @Column(name = "TotalAmount")
     private int totalAmount;
 
-    @OneToOne(targetEntity = Orderstatus.class)
-    private Orderstatus orderStatus;
-
     @ManyToMany(targetEntity = Product.class)
     private Set<Product> articles = new HashSet<>();
 
@@ -48,14 +45,6 @@ public class delivery {
 
     public void setTotalAmount(int totalAmount) {
         this.totalAmount = totalAmount;
-    }
-
-    public Orderstatus getOrderStatus() {
-        return orderStatus;
-    }
-
-    public void setOrderStatus(Orderstatus orderStatus) {
-        this.orderStatus = orderStatus;
     }
 
     public Set<Product> getProducts() {

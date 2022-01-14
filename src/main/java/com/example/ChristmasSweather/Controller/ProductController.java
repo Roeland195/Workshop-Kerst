@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class ProductController {
@@ -42,5 +43,39 @@ public class ProductController {
         List<Product> data = productRepository.findAll();
         if(data.isEmpty()) {return null;}
         return data;
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PutMapping("/Product")
+    public HTTPResponse changeProduct(@RequestBody Product[] products){
+        Product newProduct = products[0];
+        Optional<Product> old = productRepository.findById(newProduct.getId());
+
+        if(old.isEmpty()){
+            return HTTPResponse.<Product[]>returnFailure("could not find a product with id: " + newProduct.getId());
+        }
+        old.get().setName(newProduct.getName());
+        old.get().setDescription(newProduct.getDescription());
+        old.get().setPrice(newProduct.getPrice());
+        old.get().setColor(newProduct.getColor());
+        old.get().setAvalable(newProduct.isAvalable());
+        old.get().setTotal(newProduct.getTotal());
+        old.get().setSex(newProduct.getSex());
+        old.get().setSize(newProduct.getSize());
+        productRepository.save(old.get());
+
+        return HTTPResponse.<Product>returnSuccess(old.get());
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @DeleteMapping("/Product")
+    public HTTPResponse deleteProduct(@RequestBody Product[] product){
+        System.out.println(product);
+        Optional<Product> prod = productRepository.findById(product[0].getId());
+        if(prod.isEmpty()){
+            return HTTPResponse.<Product[]>returnFailure("could not find a Product with id: " + product[0].getId());
+        }
+        productRepository.deleteById(prod.get().getId());
+        return HTTPResponse.<Product>returnSuccess(prod.get());
     }
 }

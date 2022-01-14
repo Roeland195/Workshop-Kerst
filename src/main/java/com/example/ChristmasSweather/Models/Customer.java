@@ -20,9 +20,6 @@ public class Customer {
     @OneToOne(targetEntity = Login.class)
     private Login login;
 
-    @OneToOne(targetEntity = Shoppingcart.class)
-    private Shoppingcart shoppingCart;
-
     @ManyToMany(targetEntity = Address.class)
     private Set<Address> addresses = new HashSet<>();
 
@@ -70,13 +67,5 @@ public class Customer {
 
     public void setLogin(Login login) {
         this.login = login;
-    }
-
-    public Shoppingcart getShoppingCart() {
-        return shoppingCart;
-    }
-
-    public void setShoppingCart(Shoppingcart shoppingCart) {
-        this.shoppingCart = shoppingCart;
     }
 }
