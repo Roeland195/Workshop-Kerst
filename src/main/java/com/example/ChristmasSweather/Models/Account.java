@@ -6,7 +6,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
-public class Customer {
+public class Account {
     @Id
     @Column(name = "id")
     private String id;
@@ -17,23 +17,27 @@ public class Customer {
     @Column(name = "email")
     private String email;
 
-    @OneToOne(targetEntity = Login.class)
-    private Login login;
+    @Column(name = "password")
+    private String password;
 
     @ManyToMany(targetEntity = Address.class)
     private Set<Address> addresses = new HashSet<>();
 
-    protected Customer(){}
+    protected Account(){}
 
-    public Customer(String name, String email, String id){
+    public Account(String name, String email, String id, String password, Set<Address> addres){
         this.name = name;
         this.email = email;
         this.id = id;
+        this.addresses = addres;
+        this.password = password;
     }
 
-    public Customer(String name, String email){
+    public Account(String name, String email, String password, Set<Address> addres){
         this.name = name;
         this.email = email;
+        this.password = password;
+        this.addresses = addres;
         this.id = UUID.randomUUID().toString();
     }
 
@@ -61,11 +65,11 @@ public class Customer {
         this.email = email;
     }
 
-    public Login getLogin() {
-        return login;
+    public String getLogin() {
+        return password;
     }
 
-    public void setLogin(Login login) {
-        this.login = login;
+    public void setLogin(String password) {
+        this.password = password;
     }
 }

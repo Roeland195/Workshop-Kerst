@@ -14,20 +14,25 @@ public class delivery {
     @Column(name = "TotalAmount")
     private int totalAmount;
 
+    @Column(name = "status")
+    private String status;
+
     @ManyToMany(targetEntity = Product.class)
     private Set<Product> articles = new HashSet<>();
 
     protected delivery(){}
 
-    public delivery(int totalAmount, String id){
+    public delivery(int totalAmount, String id, Set<Product> articles, String status){
         this.totalAmount = totalAmount;
         this.articles = articles;
         this.id = id;
+        this.status = status;
     }
 
-    public delivery(int totalAmount){
+    public delivery(int totalAmount, Set<Product> articles, String status){
         this.totalAmount = totalAmount;
         this.articles = articles;
+        this.status = status;
         this.id = UUID.randomUUID().toString();
     }
 
@@ -47,11 +52,19 @@ public class delivery {
         this.totalAmount = totalAmount;
     }
 
-    public Set<Product> getProducts() {
+    public String getStatusID() {
+        return status;
+    }
+
+    public void setStatusID(String statusID) {
+        this.status = statusID;
+    }
+
+    public Set<Product> getArticles() {
         return articles;
     }
 
-    public void setProducts(Set<Product> articles) {
+    public void setArticles(Set<Product> articles) {
         this.articles = articles;
     }
 }

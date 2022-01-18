@@ -15,8 +15,6 @@ public class AddressController {
     @PostMapping("/Address")
     public @ResponseBody String addAddress(){
 
-        Address address = new Address("katwijk","Netherlands","Boerslaan",31,"none");
-        addressRepository.save(address);
         return "saved";
     }
 
