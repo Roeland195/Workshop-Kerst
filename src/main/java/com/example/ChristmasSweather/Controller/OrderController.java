@@ -3,19 +3,19 @@ package com.example.ChristmasSweather.Controller;
 import com.example.ChristmasSweather.HTTPResponse;
 import com.example.ChristmasSweather.Models.delivery;
 import com.example.ChristmasSweather.Models.Product;
-import com.example.ChristmasSweather.Reposetory.DeliveryRepository;
+import com.example.ChristmasSweather.Repository.DeliveryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 public class OrderController {
     @Autowired
     private DeliveryRepository deliveryRepository;
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/Wishlist")
     public HTTPResponse addOrder(@RequestBody Product[] products){
 

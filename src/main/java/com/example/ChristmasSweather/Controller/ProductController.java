@@ -2,7 +2,7 @@ package com.example.ChristmasSweather.Controller;
 
 import com.example.ChristmasSweather.HTTPResponse;
 import com.example.ChristmasSweather.Models.Product;
-import com.example.ChristmasSweather.Reposetory.ProductRepository;
+import com.example.ChristmasSweather.Repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +11,6 @@ import java.util.Optional;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/shop")
 public class ProductController {
     @Autowired
     private ProductRepository productRepository;

@@ -1,7 +1,6 @@
 package com.example.ChristmasSweather.Controller;
 
-import com.example.ChristmasSweather.Models.Address;
-import com.example.ChristmasSweather.Reposetory.AddressRepository;
+import com.example.ChristmasSweather.Repository.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

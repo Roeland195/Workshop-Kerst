@@ -1,4 +1,4 @@
-package com.example.ChristmasSweather.Reposetory;
+package com.example.ChristmasSweather.Repository;
 
 import com.example.ChristmasSweather.Models.Product;
 import org.hibernate.procedure.ProcedureOutputs;

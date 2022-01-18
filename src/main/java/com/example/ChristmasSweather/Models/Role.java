@@ -1,39 +1,26 @@
 package com.example.ChristmasSweather.Models;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
-@Table(name = "roles")
-public class Role{
+public class Role {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column
+    private String name;
 
-    @Enumerated(EnumType.STRING)
-    @Column(length = 20)
-    private ERole name;
-
-    public Role(){
-
-    }
-
-    public Role(ERole name) {
+    public Role(String name) {
         this.name = name;
     }
 
-    public Integer getId() {
-        return id;
-    }
+    public Role() {}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public ERole getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(ERole name) {
+    public void setName(String name) {
         this.name = name;
     }
 }
