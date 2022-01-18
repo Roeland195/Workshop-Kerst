@@ -9,12 +9,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
+@RequestMapping("/shop")
 public class ProductController {
     @Autowired
     private ProductRepository productRepository;
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/Product")
     public HTTPResponse addScore(@RequestBody Product[] products){
         String name = products[0].getName();
@@ -33,7 +34,6 @@ public class ProductController {
         return HTTPResponse.<Product>returnSuccess(product);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/Product")
     public Iterable<Product> getAllProducts(@RequestParam(name="name", defaultValue = "") String name){
         if(!name.equals("")){
@@ -45,7 +45,6 @@ public class ProductController {
         return data;
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("/Product")
     public HTTPResponse changeProduct(@RequestBody Product[] products){
         Product newProduct = products[0];
@@ -67,7 +66,6 @@ public class ProductController {
         return HTTPResponse.<Product>returnSuccess(old.get());
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("/Product")
     public HTTPResponse deleteProduct(@RequestBody Product[] product){
         System.out.println(product);
