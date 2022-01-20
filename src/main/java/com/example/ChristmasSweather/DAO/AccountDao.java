@@ -1,6 +1,8 @@
 package com.example.ChristmasSweather.DAO;
 
+import com.example.ChristmasSweather.Models.Address;
 import com.example.ChristmasSweather.Repository.AccountRepository;
+import com.example.ChristmasSweather.Repository.AddressRepository;
 import com.example.ChristmasSweather.jwt.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,6 +23,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 
 @Component
@@ -34,6 +37,8 @@ public class AccountDao {
     private JwtUserDetailsService userDetailsService;
     @Autowired
     private AccountRepository accountRepository;
+    @Autowired
+    private AddressRepository addressRepository;
     @Autowired
     private RoleRepo roleRepo;
 
@@ -124,7 +129,7 @@ public class AccountDao {
     }
 
     public HTTPResponse<AccountReturnObject> createMod(AccountRequestObject acc){
-        HTTPResponse<AccountReturnObject> r = registerAccount(acc.getFirstName(), acc.getLastName(), acc.getEmail(), acc.getPassword());
+        HTTPResponse<AccountReturnObject> r = registerAccount(acc.getFirstName(), acc.getLastName(), acc.getEmail(), acc.getPassword(), null);
         if (!r.isSuccess())
             return r;
         String email = r.getData().getEmail();
@@ -141,16 +146,21 @@ public class AccountDao {
      * @param password the encrypted password used by the account
      * @return an HTTPResponse containing the created account
      */
-    public HTTPResponse<AccountReturnObject> registerAccount(String firstName, String lastName, String email, String password) {
-
+    public HTTPResponse<AccountReturnObject> registerAccount(String firstName, String lastName, String email, String password, Address address) {
         if (email.equals("") || password.equals(""))
             return HTTPResponse.<AccountReturnObject>returnFailure("one ore more required parameters were empty");
         else if (accountRepository.findByEmail(email).isPresent())
             return HTTPResponse.<AccountReturnObject>returnFailure("that email already exists: " + email);
 
         String hashedPassword = userDetailsService.getHashedPassword(password);
-        Account a = new Account(firstName, lastName, email, hashedPassword, null);
+
+        Set<Role> role = (Set<Role>) new Role("USER");
+        Set<Address> addresses = (Set<Address>) new Address(address.getCity(),address.getCountry(),address.getStreet(),address.getNumber(),address.getAddons());
+
+        Account a = new Account(firstName, lastName, email, hashedPassword, addresses, role);
+        addressRepository.save(address);
         accountRepository.save(a);
+
         return HTTPResponse.<AccountReturnObject>returnSuccess(new AccountReturnObject(a));
     }
 
@@ -168,7 +178,6 @@ public class AccountDao {
             return HTTPResponse.<UserResponse>returnInvalidCredentials("");
 
         }
-
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
         final Account user = accountRepository.findByEmail(authenticationRequest.getUsername()).get();

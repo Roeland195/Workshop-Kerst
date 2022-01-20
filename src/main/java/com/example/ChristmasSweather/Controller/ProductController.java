@@ -34,15 +34,17 @@ public class ProductController {
     }
 
     @GetMapping("/Product")
-    public Iterable<Product> getAllProducts(@RequestParam(name="name", defaultValue = "") String name){
+    public HTTPResponse getAllProducts(@RequestParam(name="name", defaultValue = "") String name){
         if(!name.equals("")){
             List<Product> data = productRepository.findByName(name);
-            return data;
+            return HTTPResponse.returnSuccess(data);
         }
         List<Product> data = productRepository.findAll();
         if(data.isEmpty()) {return null;}
-        return data;
+        return HTTPResponse.returnSuccess(data);
     }
+
+
 
     @PutMapping("/Product")
     public HTTPResponse changeProduct(@RequestBody Product[] products){

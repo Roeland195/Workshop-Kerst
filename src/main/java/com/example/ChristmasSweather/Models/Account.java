@@ -29,12 +29,15 @@ public class Account {
 
     public Account() {}
 
-    public Account(String firstName, String lastName, String email, String password, Set<Address> addres) {
+    public Account(String firstName, String lastName, String email, String password, Set<Address> address, Set<Role> roles) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.addresses = addres;
+        this.roles = roles;
+        if(addresses != null){
+            this.addresses = address;
+        }
         this.id = UUID.randomUUID().toString();
     }
 

@@ -31,6 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     // define urls that don't need jwt token
     public static final String[] UNSECURED_URLS = {
             "/Product",
+            "/authenticate",
             "/register",
             "/role/save",
             "/role/addtouser",
