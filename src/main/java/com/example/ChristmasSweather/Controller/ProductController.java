@@ -27,11 +27,14 @@ public class ProductController {
         String sex = products[0].getSex();
         String size = products[0].getSize();
 
+        System.out.println(image);
+
 
         Product product = new Product(name, total, description, price, color, avalable, image, sex, size);
         productRepository.save(product);
         return HTTPResponse.<Product>returnSuccess(product);
     }
+
 
     @GetMapping("/Product")
     public HTTPResponse getAllProducts(@RequestParam(name="name", defaultValue = "") String name){

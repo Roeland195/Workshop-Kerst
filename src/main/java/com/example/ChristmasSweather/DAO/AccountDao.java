@@ -151,12 +151,15 @@ public class AccountDao {
             return HTTPResponse.<AccountReturnObject>returnFailure("one ore more required parameters were empty");
         else if (accountRepository.findByEmail(email).isPresent())
             return HTTPResponse.<AccountReturnObject>returnFailure("that email already exists: " + email);
-        String hashedPassword = userDetailsService.getHashedPassword(password);
 
-        Role role = new Role("USER");
+        String hashedPassword = userDetailsService.getHashedPassword(password);
         Address addresses = new Address(address.getCity(),address.getCountry(),address.getStreet(),address.getNumber(),address.getAddons());
-        Account a = new Account(firstName, lastName, email, hashedPassword, (Set<Address>) addresses, (Set<Role>) role);
-        addressRepository.save(address);
+        Account a = new Account(firstName, lastName, email, hashedPassword);
+        addressRepository.save(addresses);
+        a.getAddresses().add(addresses);
+
+        Role role = roleRepo.findByName("USER");
+        a.getRoles().add(role);
         accountRepository.save(a);
 
         return HTTPResponse.<AccountReturnObject>returnSuccess(new AccountReturnObject(a));

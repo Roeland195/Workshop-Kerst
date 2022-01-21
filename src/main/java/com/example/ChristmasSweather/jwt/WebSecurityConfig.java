@@ -24,8 +24,6 @@ import java.util.Arrays;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 
-//TODO Remove tutorial commants
-
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     // define urls that don't need jwt token
@@ -33,6 +31,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/Product",
             "/authenticate",
             "/register",
+            "/Wishlist",
+            "/Orders",
             "/role/save",
             "/role/addtouser",
             "/role/removefromuser",
