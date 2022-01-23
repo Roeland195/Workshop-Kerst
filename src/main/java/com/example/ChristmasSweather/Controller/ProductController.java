@@ -16,7 +16,7 @@ public class ProductController {
     private ProductRepository productRepository;
 
     @PostMapping("/Product")
-    public HTTPResponse addScore(@RequestBody Product[] products){
+    public HTTPResponse addProduct(@RequestBody Product[] products){
         String name = products[0].getName();
         String description = products[0].getDescription();
         double price = products[0].getPrice();
