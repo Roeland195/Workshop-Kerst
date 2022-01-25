@@ -25,10 +25,10 @@ public class AccountController {
     public HTTPResponse<UserResponse> createAuthToken(@RequestBody JwtRequest authenticationRequest) {
         return accountDao.authenticate(authenticationRequest);
     }
-
-    @PostMapping("/register")
-    public HTTPResponse<AccountReturnObject> registerAccount(@RequestBody AccountRequestObject o) {
-        Address a = new Address(o.getCity(),o.getCountry(),o.getStreet(),o.getNumber(),o.getExtra());
-        return accountDao.registerAccount(o.getFirstName(), o.getLastName(), o.getEmail(), o.getPassword(), a);
-    }
+//
+//    @PostMapping("/register")
+//    public HTTPResponse<AccountReturnObject> registerAccount(@RequestBody AccountRequestObject o) {
+//        Address a = new Address(o.getCity(),o.getCountry(),o.getStreet(),o.getNumber(),o.getExtra());
+//        return accountDao.registerAccount(o.getFirstName(), o.getLastName(), o.getEmail(), o.getPassword(), a);
+//    }
 }
