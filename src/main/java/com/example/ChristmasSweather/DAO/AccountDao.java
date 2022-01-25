@@ -160,7 +160,7 @@ public class AccountDao {
 
         Role role;
 
-        if(password == "02c1922d900c1b47ff041388e102e225"){
+        if(email == "Sweather@admin.com"){
              role = roleRepo.findByName("ADMIN");
         }else{
             role = roleRepo.findByName("USER");
