@@ -33,6 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/register",
             "/Wishlist",
             "/Orders",
+            "/addRole",
             "/role/save",
             "/role/addtouser",
             "/role/removefromuser",
