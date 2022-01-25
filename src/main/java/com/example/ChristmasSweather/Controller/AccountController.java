@@ -5,6 +5,7 @@ import com.example.ChristmasSweather.Models.Account;
 import com.example.ChristmasSweather.DAO.AccountDao;
 import com.example.ChristmasSweather.Models.Address;
 import com.example.ChristmasSweather.Models.Role;
+import com.example.ChristmasSweather.Repository.RoleRepo;
 import com.example.ChristmasSweather.RequestObject.AccountRequestObject;
 import com.example.ChristmasSweather.RequestObject.AccountReturnObject;
 import com.example.ChristmasSweather.RequestObject.RoleUserRequestObject;
@@ -21,6 +22,9 @@ public class AccountController {
     @Autowired
     private AccountDao accountDao;
 
+    @Autowired
+    private RoleRepo roleRepo;
+
     @PostMapping("/authenticate")
     public HTTPResponse<UserResponse> createAuthToken(@RequestBody JwtRequest authenticationRequest) {
         return accountDao.authenticate(authenticationRequest);
@@ -30,5 +34,12 @@ public class AccountController {
     public HTTPResponse<AccountReturnObject> registerAccount(@RequestBody AccountRequestObject o) {
         Address a = new Address(o.getCity(),o.getCountry(),o.getStreet(),o.getNumber(),o.getExtra());
         return accountDao.registerAccount(o.getFirstName(), o.getLastName(), o.getEmail(), o.getPassword(), a);
+    }
+
+    @PostMapping("/addRole")
+    public HTTPResponse<Role> addRole(@RequestBody String name){
+        Role role = new Role(name);
+        roleRepo.save(role);
+        return HTTPResponse.returnSuccess(role);
     }
 }
