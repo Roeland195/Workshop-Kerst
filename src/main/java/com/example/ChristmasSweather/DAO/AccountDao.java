@@ -158,13 +158,8 @@ public class AccountDao {
         addressRepository.save(addresses);
         a.getAddresses().add(addresses);
 
-        Role role;
+        Role role = roleRepo.findByName("USER");
 
-        if(email == "sweather@admin.com"){
-             role = roleRepo.findByName("ADMIN");
-        }else{
-            role = roleRepo.findByName("USER");
-        }
         a.getRoles().add(role);
         accountRepository.save(a);
 
