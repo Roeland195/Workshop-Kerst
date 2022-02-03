@@ -3,6 +3,7 @@ package com.example.ChristmasSweather.jwt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -27,17 +28,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     // define urls that don't need jwt token
     public static final String[] UNSECURED_URLS = {
-            "/Product",
             "/authenticate",
             "/register",
-            "/Wishlist",
-            "/Orders",
-            "/addRole",
-            "/role/save",
-            "/role/addtouser",
-            "/role/removefromuser",
-            "/account",
-            "/account/admin"
     };
 
     @Autowired
@@ -73,9 +65,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // configure cors
         httpSecurity.csrf().disable().cors().configurationSource(this.corsConfigurationSource()).and()
                 // don't authenticate these requests
-                .authorizeRequests().antMatchers(UNSECURED_URLS).permitAll().
+                .authorizeRequests().antMatchers(UNSECURED_URLS).permitAll().and().authorizeRequests()
+                .antMatchers(HttpMethod.GET, "/Orders").hasAnyAuthority(RoleNames.MOD.getValue())
+                .antMatchers(HttpMethod.POST, "/Wishlist").hasAnyAuthority(RoleNames.USER.getValue())
+                .antMatchers(HttpMethod.POST, "/addRole").hasAnyAuthority(RoleNames.MOD.getValue())
+
+                .antMatchers(HttpMethod.POST, "/Product").hasAnyAuthority(RoleNames.MOD.getValue())
+                .antMatchers(HttpMethod.PUT, "/Product").hasAnyAuthority(RoleNames.MOD.getValue())
+                .antMatchers(HttpMethod.DELETE, "/Product").hasAnyAuthority(RoleNames.MOD.getValue())
+                .antMatchers(HttpMethod.GET, "/Product").permitAll()
+
+
+
+
                 // all other requests need to be authenticated
-                        anyRequest().authenticated().and().
+                .anyRequest().authenticated().and().
                 // make sure we use stateless session; session won't be used to
                 // store user's state.
                         exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
