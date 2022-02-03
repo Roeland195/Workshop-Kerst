@@ -1,7 +1,8 @@
 package com.example.ChristmasSweather.jwt;
 
 public enum RoleNames {
-    MOD("MOD");
+    MOD("MOD"),
+    USER("USER");
     private String value;
 
     RoleNames(String value) {

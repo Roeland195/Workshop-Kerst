@@ -1,7 +1,6 @@
 package com.example.ChristmasSweather.Models;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 @Entity
