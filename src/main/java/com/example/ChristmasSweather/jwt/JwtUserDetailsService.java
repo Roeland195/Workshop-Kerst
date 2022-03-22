@@ -24,11 +24,6 @@ public class JwtUserDetailsService implements UserDetailsService {
     @Autowired
     private PasswordEncoder bcryptEncoder;
 
-    /** username means email in this context
-     * @param email the users email
-     * @return details on the user
-     * @throws UsernameNotFoundException
-     */
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Account account = accountDao.getByEmail(email);

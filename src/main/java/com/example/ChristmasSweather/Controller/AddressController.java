@@ -4,8 +4,6 @@ import com.example.ChristmasSweather.Repository.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-
-
 @RestController
 public class AddressController {
     @Autowired
@@ -15,5 +13,4 @@ public class AddressController {
     public @ResponseBody String addAddress(){
         return "saved";
     }
-
 }

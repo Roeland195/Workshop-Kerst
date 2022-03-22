@@ -39,8 +39,6 @@ public class OrderService {
     }
 
     public String saveOrder(PlaceOrderDto orderDto, String userId, int total){
-
-
         delivery delivery = new delivery(orderDto,"IN BEHANDELING" ,userId, total);
                 return deliveryRepository.save(delivery).getId();
     }
