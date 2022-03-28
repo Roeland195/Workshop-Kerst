@@ -3,7 +3,6 @@ package com.example.ChristmasSweather.jwt;
 import com.example.ChristmasSweather.Models.Account;
 import com.example.ChristmasSweather.Models.Role;
 import com.example.ChristmasSweather.Repository.AccountRepository;
-import com.example.ChristmasSweather.services.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;

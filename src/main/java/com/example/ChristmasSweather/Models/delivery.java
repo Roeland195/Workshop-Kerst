@@ -3,11 +3,13 @@ package com.example.ChristmasSweather.Models;
 import com.example.ChristmasSweather.DTO.PlaceOrderDto;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
 @Entity
-public class Delivery {
+public class delivery {
     @Id
     @Column(name = "id")
     private String id;
@@ -24,24 +26,24 @@ public class Delivery {
     @Column(name = "status")
     private String status;
 
-    @OneToMany(targetEntity = Orderitem.class)
+    @OneToMany(targetEntity = orderitem.class)
     @JoinColumn(name = "order_id", referencedColumnName = "id", insertable = false, updatable = false)
-    private Set<Orderitem> orderItems;
+    private Set<orderitem> orderItems;
 
     @ManyToOne(targetEntity = Account.class)
     @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Account account;
 
-    protected Delivery(){}
+    protected delivery(){}
 
-    public Delivery(String id, String status, PlaceOrderDto orderDto, String userid){
+    public delivery( String id,String status,PlaceOrderDto orderDto, String userid){
         this.id = id;
         this.userid = userid;
         this.status = status;
         this.totalPrice = orderDto.getTotalPrice();
     }
 
-    public Delivery(PlaceOrderDto orderDto, String status, String userid, int total){
+    public delivery(PlaceOrderDto orderDto,String status, String userid, int total){
         this.id = UUID.randomUUID().toString();
         this.userid = userid;
         this.status = status;
@@ -97,11 +99,11 @@ public class Delivery {
         this.status = status;
     }
 
-    public Set<Orderitem> getOrderItems() {
+    public Set<orderitem> getOrderItems() {
         return orderItems;
     }
 
-    public void setOrderItems(Set<Orderitem> orderItems) {
+    public void setOrderItems(Set<orderitem> orderItems) {
         this.orderItems = orderItems;
     }
 
