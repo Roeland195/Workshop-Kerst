@@ -14,6 +14,8 @@ public class ProductDao {
     @Autowired
     ProductRepository productRep;
 
+    String test = "tset";
+
     public ProductDao(){}
 
     public HTTPResponse getProduct(String name){
