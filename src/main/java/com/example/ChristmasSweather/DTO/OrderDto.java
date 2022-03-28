@@ -1,12 +1,12 @@
 package com.example.ChristmasSweather.DTO;
 
-import com.example.ChristmasSweather.Models.Delivery;
+import com.example.ChristmasSweather.Models.delivery;
 
 public class OrderDto {
     private String id;
     private String userId;
 
-    public OrderDto(Delivery order){
+    public OrderDto(delivery order){
         this.setId(order.getId());
         this.setUserId(order.getUserid());
     }

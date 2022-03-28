@@ -1,6 +1,6 @@
 package com.example.ChristmasSweather.DTO;
 
-import com.example.ChristmasSweather.Models.Orderitem;
+import com.example.ChristmasSweather.Models.orderitem;
 
 public class OrderItemsDto {
     private double price;
@@ -47,6 +47,6 @@ public class OrderItemsDto {
         this.productId = productId;
     }
 
-    public void addOrderedProducts(Orderitem orderitem) {
+    public void addOrderedProducts(orderitem orderitem) {
     }
 }

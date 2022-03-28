@@ -1,4 +1,4 @@
-package com.example.ChristmasSweather.services;
+package com.example.ChristmasSweather.jwt;
 
 import com.example.ChristmasSweather.DAO.AccountDao;
 import com.example.ChristmasSweather.Models.Account;

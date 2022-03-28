@@ -2,7 +2,7 @@ package com.example.ChristmasSweather.DTO;
 
 import com.example.ChristmasSweather.Models.Product;
 import org.hibernate.criterion.Order;
-import com.example.ChristmasSweather.Models.Delivery;
+import com.example.ChristmasSweather.Models.delivery;
 
 import java.util.UUID;
 
@@ -13,7 +13,7 @@ public class PlaceOrderDto {
 
     public PlaceOrderDto(){}
 
-    public PlaceOrderDto(Delivery order){
+    public PlaceOrderDto(delivery order){
         this.id = UUID.randomUUID().toString();
         this.setId(order.getId());
         this.setUserId(order.getUserid());
