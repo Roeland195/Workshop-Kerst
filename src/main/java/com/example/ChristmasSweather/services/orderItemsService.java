@@ -1,12 +1,10 @@
 package com.example.ChristmasSweather.services;
 
-import com.example.ChristmasSweather.DTO.PlaceOrderDto;
-import com.example.ChristmasSweather.Models.delivery;
+import com.example.ChristmasSweather.Models.Orderitem;
 import com.example.ChristmasSweather.Repository.DeliveryRepository;
 import com.example.ChristmasSweather.Repository.OrderItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.example.ChristmasSweather.Models.orderitem;
 
 @Service
 public class orderItemsService {
@@ -16,7 +14,7 @@ public class orderItemsService {
     @Autowired
     private OrderItemRepository orderItemRepository;
 
-    public void addOrderedProducts(orderitem item){
+    public void addOrderedProducts(Orderitem item){
         orderItemRepository.save(item);
     }
 

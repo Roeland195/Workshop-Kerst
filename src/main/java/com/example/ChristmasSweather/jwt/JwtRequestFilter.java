@@ -1,5 +1,6 @@
 package com.example.ChristmasSweather.jwt;
 
+import com.example.ChristmasSweather.services.JwtUserDetailsService;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

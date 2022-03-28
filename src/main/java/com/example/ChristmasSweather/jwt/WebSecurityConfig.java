@@ -1,5 +1,6 @@
 package com.example.ChristmasSweather.jwt;
 
+import com.example.ChristmasSweather.services.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
