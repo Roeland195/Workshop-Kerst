@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Table(name = "orderitems")
-public class orderitem {
+@Table(name = "Orderitems")
+public class Orderitem {
 
     @Id
     @Column(name = "id")
@@ -27,9 +27,9 @@ public class orderitem {
     @JoinColumn(name = "product_id", referencedColumnName = "id", insertable = false,updatable = false)
     private Product product;
 
-    public orderitem(){}
+    public Orderitem(){}
 
-    public orderitem(String order_id, String product_id, int quantity, double price){
+    public Orderitem(String order_id, String product_id, int quantity, double price){
         this.id = UUID.randomUUID().toString();
         this.order_id = order_id;
         this.product_id = product_id;
@@ -85,3 +85,4 @@ public class orderitem {
         this.product = product;
     }
 }
+
