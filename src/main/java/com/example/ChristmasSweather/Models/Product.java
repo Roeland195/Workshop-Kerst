@@ -3,9 +3,6 @@ package com.example.ChristmasSweather.Models;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.UUID;
 
 @Table(name = "product")

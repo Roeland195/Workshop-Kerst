@@ -1,15 +1,13 @@
 package com.example.ChristmasSweather.services;
 
-import com.example.ChristmasSweather.DTO.OrderItemsDto;
 import com.example.ChristmasSweather.DTO.PlaceOrderDto;
 import com.example.ChristmasSweather.Models.Product;
-import com.example.ChristmasSweather.Models.delivery;
+import com.example.ChristmasSweather.Models.Delivery;
 import com.example.ChristmasSweather.Models.orderitem;
 import com.example.ChristmasSweather.Repository.DeliveryRepository;
 import com.example.ChristmasSweather.Repository.OrderItemRepository;
 import com.example.ChristmasSweather.RequestObject.ShoppingListRequestObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,13 +39,13 @@ public class OrderService {
     public String saveOrder(PlaceOrderDto orderDto, String userId, int total){
 
 
-        delivery delivery = new delivery(orderDto,"IN BEHANDELING" ,userId, total);
+        Delivery delivery = new Delivery(orderDto,"IN BEHANDELING" ,userId, total);
                 return deliveryRepository.save(delivery).getId();
     }
 
-    public List<delivery> listOfOrders(){
+    public List<Delivery> listOfOrders(){
 
-        List<delivery> data = deliveryRepository.findAll();
+        List<Delivery> data = deliveryRepository.findAll();
         return deliveryRepository.findAll();
     }
 }

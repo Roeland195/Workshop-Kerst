@@ -3,13 +3,11 @@ package com.example.ChristmasSweather.Models;
 import com.example.ChristmasSweather.DTO.PlaceOrderDto;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
 @Entity
-public class delivery {
+public class Delivery {
     @Id
     @Column(name = "id")
     private String id;
@@ -34,16 +32,16 @@ public class delivery {
     @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Account account;
 
-    protected delivery(){}
+    protected Delivery(){}
 
-    public delivery( String id,String status,PlaceOrderDto orderDto, String userid){
+    public Delivery(String id, String status, PlaceOrderDto orderDto, String userid){
         this.id = id;
         this.userid = userid;
         this.status = status;
         this.totalPrice = orderDto.getTotalPrice();
     }
 
-    public delivery(PlaceOrderDto orderDto,String status, String userid, int total){
+    public Delivery(PlaceOrderDto orderDto, String status, String userid, int total){
         this.id = UUID.randomUUID().toString();
         this.userid = userid;
         this.status = status;

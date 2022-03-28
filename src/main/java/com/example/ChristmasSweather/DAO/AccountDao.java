@@ -23,8 +23,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
-
 
 @Component
 public class AccountDao {
@@ -129,7 +127,7 @@ public class AccountDao {
     }
 
     public HTTPResponse<AccountReturnObject> createMod(AccountRequestObject acc){
-        HTTPResponse<AccountReturnObject> r = registerAccount(acc.getFirstName(), acc.getLastName(), acc.getEmail(), acc.getPassword(), null);
+        HTTPResponse<AccountReturnObject> r = registerAccount(acc);
         if (!r.isSuccess())
             return r;
         String email = r.getData().getEmail();
@@ -137,24 +135,16 @@ public class AccountDao {
         return HTTPResponse.returnSuccess(r.getData());
     }
 
-
-
-    /** register a new accoutn with the following information
-     * @param firstName the first name
-     * @param lastName the last name
-     * @param email the email of the account, used to log in
-     * @param password the encrypted password used by the account
-     * @return an HTTPResponse containing the created account
-     */
-    public HTTPResponse<AccountReturnObject> registerAccount(String firstName, String lastName, String email, String password, Address address) {
-        if (email.equals("") || password.equals(""))
+    public HTTPResponse<AccountReturnObject> registerAccount(AccountRequestObject o) {
+        Address address = new Address(o.getCity(),o.getCountry(),o.getStreet(),o.getNumber(),o.getExtra());
+        if (o.getEmail().equals("") || o.getPassword().equals(""))
             return HTTPResponse.<AccountReturnObject>returnFailure("one ore more required parameters were empty");
-        else if (accountRepository.findByEmail(email).isPresent())
-            return HTTPResponse.<AccountReturnObject>returnFailure("that email already exists: " + email);
+        else if (accountRepository.findByEmail(o.getEmail()).isPresent())
+            return HTTPResponse.<AccountReturnObject>returnFailure("that email already exists: " + o.getEmail());
 
-        String hashedPassword = userDetailsService.getHashedPassword(password);
+        String hashedPassword = userDetailsService.getHashedPassword(o.getPassword());
         Address addresses = new Address(address.getCity(),address.getCountry(),address.getStreet(),address.getNumber(),address.getAddons());
-        Account a = new Account(firstName, lastName, email, hashedPassword);
+        Account a = new Account(o.getFirstName(), o.getLastName(), o.getEmail(), hashedPassword);
         addressRepository.save(addresses);
         a.getAddresses().add(addresses);
 
