@@ -14,19 +14,18 @@ public class ProductDao {
     @Autowired
     ProductRepository productRep;
 
-    String test = "tset";
-
     public ProductDao(){}
 
     public HTTPResponse getProduct(String name){
-        List<Product> data;
         if(!name.equals("")){
-            data = productRep.findByName(name);
+            Product product = productRep.findByName(name);
+            if(product == null) {return HTTPResponse.returnFailure("NO PRODUCTS WHERE FOUND");}
+            return HTTPResponse.returnSuccess(product);
         }else{
-            data = productRep.findAll();
+            List<Product> data = productRep.findAll();
+            if(data.isEmpty()) {return HTTPResponse.returnFailure("NO PRODUCTS WHERE FOUND");}
+            return HTTPResponse.returnSuccess(data);
         }
-        if(data.isEmpty()) {return HTTPResponse.returnFailure("NO PRODUCTS WHERE FOUND");}
-        return HTTPResponse.returnSuccess(data);
     }
 
     public HTTPResponse addProduct(Product product){

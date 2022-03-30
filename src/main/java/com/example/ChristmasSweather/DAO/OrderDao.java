@@ -5,6 +5,7 @@ import com.example.ChristmasSweather.Models.Account;
 import com.example.ChristmasSweather.Models.Delivery;
 import com.example.ChristmasSweather.Models.Product;
 import com.example.ChristmasSweather.Repository.AccountRepository;
+import com.example.ChristmasSweather.Repository.ProductRepository;
 import com.example.ChristmasSweather.RequestObject.ShoppingListRequestObject;
 import com.example.ChristmasSweather.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ public class OrderDao {
     private AccountRepository accountRepository;
     @Autowired
     private OrderService orderService;
+    @Autowired
+    private ProductRepository productRepository;
 
     public OrderDao(){}
 
@@ -31,10 +34,11 @@ public class OrderDao {
 
     public HTTPResponse addOrder(ShoppingListRequestObject shoppingList){
         double price = 0;
-        int total = 0;
+        int total = shoppingList.getProducts().length;
         for(Product product : shoppingList.getProducts()){
-            price = price + product.getPrice();
-            total = total+1;
+            Product p = productRepository.findByName(product.getName());
+            System.out.println(p);
+            price = price + p.getPrice();
         }
         Optional<Account> account = accountRepository.findByEmail(shoppingList.getUserId());
         orderService.placeOrder(shoppingList, account.get().getId(),price,total);
