@@ -34,9 +34,10 @@ public class Delivery {
 
     protected Delivery(){}
 
-    public Delivery(String id, String status, PlaceOrderDto orderDto, String userid){
+    public Delivery(String id, String status, PlaceOrderDto orderDto, String userid, int total){
         this.id = id;
         this.userid = userid;
+        this.totalAmount = total;
         this.status = status;
         this.totalPrice = orderDto.getTotalPrice();
     }

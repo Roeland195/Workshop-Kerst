@@ -69,6 +69,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/Orders").hasAnyAuthority(RoleNames.MOD.getValue())
                 .antMatchers(HttpMethod.POST, "/Wishlist").hasAnyAuthority(RoleNames.USER.getValue())
                 .antMatchers(HttpMethod.POST, "/addRole").hasAnyAuthority(RoleNames.MOD.getValue())
+                .antMatchers(HttpMethod.POST, "/controlToken").hasAnyAuthority(RoleNames.MOD.getValue())
 
                 .antMatchers(HttpMethod.POST, "/Product").hasAnyAuthority(RoleNames.MOD.getValue())
                 .antMatchers(HttpMethod.PUT, "/Product").hasAnyAuthority(RoleNames.MOD.getValue())

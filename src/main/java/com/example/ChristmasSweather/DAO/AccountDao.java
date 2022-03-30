@@ -180,5 +180,9 @@ public class AccountDao {
         UserResponse userDetails = new UserResponse(account.getEmail(), account.getFirstName(), account.getLastName(), response);
         return HTTPResponse.<UserResponse>returnSuccess(userDetails);
     }
+
+    public HTTPResponse<AccountReturnObject> controlToken(){
+        return HTTPResponse.<AccountReturnObject>returnSuccess(null);
+    }
 }
 

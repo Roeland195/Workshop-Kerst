@@ -21,7 +21,7 @@ public class Account {
     @Column(name = "password")
     private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY, targetEntity = Role.class)
+    @ManyToMany(targetEntity = Role.class, fetch = FetchType.EAGER)
     private Set<Role> roles = new HashSet<>();
 
     @ManyToMany(targetEntity = Address.class)

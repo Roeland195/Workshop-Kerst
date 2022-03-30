@@ -34,7 +34,7 @@ public class JwtUserDetailsService implements UserDetailsService {
         Account account = accountDao.getByEmail(email);
         if (account == null)
             throw new UsernameNotFoundException("User not found with email: " + email);
-        return new org.springframework.security.core.userdetails.User(account.getEmail(), account.getPassword(), new ArrayList<>());
+        return new org.springframework.security.core.userdetails.User(account.getEmail(), account.getPassword(), getAuthorities(account.getRoles()));
     }
 
     public boolean doPasswordsMatch(String password, String encryptedPassword) {
@@ -53,6 +53,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 
         return getGrantedAuthorities(getPrivileges(roles));
     }
+
 
     private List<String> getPrivileges(Collection<Role> roles) {
 

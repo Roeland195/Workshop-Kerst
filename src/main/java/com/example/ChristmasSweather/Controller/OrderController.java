@@ -20,6 +20,7 @@ public class OrderController {
 
     @PostMapping("/Wishlist")
     public HTTPResponse addOrder(@RequestBody ShoppingListRequestObject shoplist){
+        System.out.println(shoplist);
         return orderDao.addOrder(shoplist);
     }
 }

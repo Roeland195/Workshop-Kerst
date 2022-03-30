@@ -37,6 +37,7 @@ public class JwtAuthenticationManager implements AuthenticationManager {
             throw new BadCredentialsException("");
         }
         Set<Role> roles = account.get().getRoles();
+
         return new UsernamePasswordAuthenticationToken(email,null,roles.stream()
                 .map(x -> new SimpleGrantedAuthority(x.getName())).collect(Collectors.toList()));
     }

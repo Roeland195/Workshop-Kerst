@@ -2,6 +2,7 @@ package com.example.ChristmasSweather.Controller;
 
 import com.example.ChristmasSweather.HTTPResponse;
 import com.example.ChristmasSweather.DAO.AccountDao;
+import com.example.ChristmasSweather.Models.Account;
 import com.example.ChristmasSweather.Models.Role;
 import com.example.ChristmasSweather.Repository.RoleRepo;
 import com.example.ChristmasSweather.RequestObject.AccountRequestObject;
@@ -34,5 +35,10 @@ public class AccountController {
         Role role = new Role(name);
         roleRepo.save(role);
         return HTTPResponse.returnSuccess(role);
+    }
+
+    @PostMapping("/controltoken")
+    public HTTPResponse<AccountReturnObject> controlToken(@RequestBody String name){
+        return accountDao.controlToken();
     }
 }
