@@ -38,7 +38,7 @@ public class AccountController {
     }
 
     @PostMapping("/controltoken")
-    public HTTPResponse<AccountReturnObject> controlToken(@RequestBody String name){
+    public HTTPResponse<AccountReturnObject> controlToken(){
         return accountDao.controlToken();
     }
 }
