@@ -13,6 +13,8 @@ import java.util.Optional;
 public class ProductDao {
     @Autowired
     ProductRepository productRep;
+    @Autowired
+    ImageDao imageDao;
 
     public ProductDao(){}
 
@@ -23,12 +25,21 @@ public class ProductDao {
             return HTTPResponse.returnSuccess(product);
         }else{
             List<Product> data = productRep.findAll();
+            for(Product product: data){
+                if(product.getImage() == null){
+                String image = imageDao.constructimg(product.getId());
+                product.setImage(image);
+                    System.out.println(product.getImage());
+                }
+            }
+
             if(data.isEmpty()) {return HTTPResponse.returnFailure("NO PRODUCTS WHERE FOUND");}
             return HTTPResponse.returnSuccess(data);
         }
     }
 
     public HTTPResponse addProduct(Product product){
+        System.out.println(product.getImage());
         Product newproduct = new Product(   product.getName(),
                 product.getTotal(),
                 product.getDescription(),
@@ -38,6 +49,12 @@ public class ProductDao {
                 product.getImage(),
                 product.getSex(),
                 product.getSize());
+
+        if(product.getImage().length() > 250){
+            imageDao.saveimg(newproduct);
+            newproduct.setImage(null);
+        }
+
         productRep.save(newproduct);
         return HTTPResponse.returnSuccess("Product has been saved");
     }
