@@ -27,7 +27,6 @@ public class OrderDao {
 
     public HTTPResponse getOrder(){
         List<Delivery> deliveries = orderService.listOfOrders();
-        orderService.deleteallOrders();
         if(deliveries.isEmpty()){return HTTPResponse.returnFailure("NO ORDERS WHERE FOUND");}
 
         return HTTPResponse.returnSuccess(deliveries);
