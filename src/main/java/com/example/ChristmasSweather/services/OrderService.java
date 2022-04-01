@@ -48,4 +48,9 @@ public class OrderService {
         List<Delivery> data = deliveryRepository.findAll();
         return deliveryRepository.findAll();
     }
+
+    public void deleteallOrders(){
+        orderItemRepository.deleteAll();
+        deliveryRepository.deleteAll();
+    }
 }
