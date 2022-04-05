@@ -69,11 +69,18 @@ public class ProductDao {
         productToChange.get().setName(product.getName());
         productToChange.get().setDescription(product.getDescription());
         productToChange.get().setPrice(product.getPrice());
+        productToChange.get().setImage(product.getImage());
         productToChange.get().setColor(product.getColor());
         productToChange.get().setAvalable(product.isAvalable());
         productToChange.get().setTotal(product.getTotal());
         productToChange.get().setSex(product.getSex());
         productToChange.get().setSize(product.getSize());
+
+        if(productToChange.get().getImage().length() > 250){
+            imageDao.saveimg(productToChange.get());
+            productToChange.get().setImage(null);
+        }
+
         productRep.save(productToChange.get());
 
         return HTTPResponse.returnSuccess("Product has changed");
